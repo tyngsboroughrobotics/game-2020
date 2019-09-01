@@ -1,4 +1,7 @@
-from botball import libwallaby
+import sys
+sys.path.append("/home/root/Documents/KISS/Default User/botball-game/_botball_build")
+
+from botball import wallaby
 
 if __name__ == "__main__":
     # procedure_run = choose_game_procedure(
@@ -11,4 +14,4 @@ if __name__ == "__main__":
     # procedure_run()
 
     while True:
-        print(libwallaby.left_button())
+        print(wallaby.left_button())

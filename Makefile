@@ -1,8 +1,7 @@
 HOSTNAME=root@pepper.local
 SSH=ssh -t ${HOSTNAME}
-PROJECT_ROOT=/home/root/Documents/KISS/Default\ User/botball-game
-PROJECT_ROOT_SCP="/home/root/Documents/KISS/Default\\ User/botball-game"
-BOTBALL_SITE_PACKAGE="/usr/lib/python2.7/site-packages/botball"
+PROJECT_ROOT=Documents/KISS/Default\ User/botball-game
+PROJECT_ROOT_SCP="Documents/KISS/Default\\ User/botball-game"
 EXECUTABLE=_build/bin/botball_user_program
 
 ADD_ENVVAR_BEGIN=${SSH} "echo 'export
@@ -39,7 +38,7 @@ build:
 
 	# Build Botball for Python
 	@cd botball; make build-for-py2; cd ..
-	@mv botball/_py2_build/* _build/_botball_build/
+	@mv botball/_py2_build/ _build/_botball_build/
 
 	# Build Game
 	@py-backwards -i src/ -o _build/src/ -t 2.7
@@ -56,9 +55,6 @@ install:
 
 	@# Copy build folder
 	@scp -C -r _build/* botball-game.project.json ${HOSTNAME}:${PROJECT_ROOT_SCP}
-
-	@# Install Botball package on Wallaby
-	@${SSH} "rm -rf ${BOTBALL_SITE_PACKAGE}; mv ${PROJECT_ROOT}/_botball_build ${BOTBALL_SITE_PACKAGE}"
 
 run:
 	@${SSH} "echo; ${PROJECT_ROOT}/bin/botball_user_program"
