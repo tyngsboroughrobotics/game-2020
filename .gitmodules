@@ -1,0 +1,3 @@
+[submodule "botball"]
+	path = botball
+	url = https://github.com/tyngsboroughrobotics/botball.git
