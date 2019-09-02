@@ -1,4 +1,6 @@
-from botball.core import *
+from botball.core.components import Motor, WheelGroup, Servo, Direction
+from botball.core.components.devices import Camera
+from botball.core.procedure import step, Procedure
 
 # The right motor veers off a bit, so we make the left wheel a bit slower to
 # have the robot move in a straight line
@@ -112,7 +114,7 @@ def pick_up_firetruck():
 
 # - Game procedure
 
-procedure = Procedure(name="Botball 2019 Demobot", steps=[
+procedure = Procedure(name="Demobot Temp", steps=[
     reset_servos, # reset everything at the start of the game
 
     get_ambulance,
