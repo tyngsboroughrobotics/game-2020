@@ -9,6 +9,4 @@ if __name__ == "__main__":
         create=create_procedure.procedure
     )
 
-    # TODO: wait_for_light if debug enabled
-
     procedure_run()
