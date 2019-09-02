@@ -12,10 +12,10 @@ update-botball:
 	git submodule update --remote botball
 
 configure-as-demobot:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot"
+	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot; rm -f ${CONFIG_DIRECTORY}/create"
 
 configure-as-create:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/create"
+	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/demobot; touch ${CONFIG_DIRECTORY}/create"
 
 configure-debug-enable:
 	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/debug"
