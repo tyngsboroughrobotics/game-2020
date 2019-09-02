@@ -11,9 +11,6 @@ init:
 update-botball:
 	git submodule update --remote botball
 
-ssh:
-	@${SSH} 2> /dev/null
-
 configure-as-demobot:
 	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot"
 
