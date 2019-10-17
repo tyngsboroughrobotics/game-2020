@@ -6,22 +6,22 @@ EXECUTABLE=_build/bin/botball_user_program
 CONFIG_DIRECTORY=/etc/ths-botball-conf
 
 init:
-	git submodule init
+	@git submodule init
 
 update-botball:
-	git submodule update --remote botball
+	@git submodule update --remote botball
 
 configure-as-demobot:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot; rm -f ${CONFIG_DIRECTORY}/create"
+	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot; rm -f ${CONFIG_DIRECTORY}/create"
 
 configure-as-create:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/demobot; touch ${CONFIG_DIRECTORY}/create"
+	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/demobot; touch ${CONFIG_DIRECTORY}/create"
 
 configure-debug-enable:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/debug"
+	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/debug"
 
 configure-debug-disable:
-	${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/debug"
+	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/debug"
 
 clean:
 	@rm -rf _build/
