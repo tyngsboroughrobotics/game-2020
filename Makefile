@@ -7,6 +7,7 @@ CONFIG_DIRECTORY=/etc/ths-botball-conf
 
 init:
 	@git submodule init
+	@make update-botball
 
 update-botball:
 	@git submodule update --remote botball

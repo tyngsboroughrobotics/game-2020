@@ -37,7 +37,7 @@ See the  [documentation](https://tyngsboroughrobotics.github.io/botball/) for de
 
 2. Clone this repository to your computer: `git clone https://github.com/tyngsboroughrobotics/game2020.git`
 
-3. Navigate to the project folder in your terminal and type `make init && make update-botball`. These commands download the latest version of Botball for Python to your computer and provide PyCharm type hints.
+3. Navigate to the project folder in your terminal and type `make init`. These commands download the latest version of Botball for Python to your computer and provide PyCharm type hints.
 
 4. Open the project folder in PyCharm and allow it to index. Install all required plugins; they'll appear in a popup in the bottom right.
 
