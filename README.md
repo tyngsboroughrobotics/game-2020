@@ -29,3 +29,16 @@ This repository is actively developed and maintained by:
 
  - Wilson Gramer ([GitHub](https://github.com/Wilsonator5000), [Twitter](https://twitter.com/wgramer03))
  
+# Quick project setup
+
+See the  [documentation](https://tyngsboroughrobotics.github.io/botball/) for detailed instructions.
+
+1. Install Pycharm, Git and Make for your operating system (Windows or macOS). Chromebooks are not supported.
+
+2. Clone this repository to your computer: `git clone https://github.com/tyngsboroughrobotics/game2020.git`
+
+3. Navigate to the project folder in your terminal and type `make init && make update-botball`. These commands download the latest version of Botball for Python to your computer and provide PyCharm type hints.
+
+4. Open the project folder in PyCharm and allow it to index. Install all required plugins; they'll appear in a popup in the bottom right.
+
+5. Connect your robot controller start hacking! When you're ready to deploy to the robot, click "deploy" from the top-right dropdown menu and then the green Play button.
