@@ -41,4 +41,4 @@ See the  [documentation](https://tyngsboroughrobotics.github.io/botball/) for de
 
 4. Open the project folder in PyCharm and allow it to index. Install all required plugins; they'll appear in a popup in the bottom right.
 
-5. Connect your robot controller start hacking! When you're ready to deploy to the robot, click "deploy" from the top-right dropdown menu and then the green Play button.
+5. Connect your robot controller and start hacking! When you're ready to deploy to the robot, click "deploy" from the top-right dropdown menu and then the green Play button.
