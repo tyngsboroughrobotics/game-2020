@@ -20,6 +20,6 @@ create = Create(speed=1.0)
 
 # Build your procedure here, eg:
 #
-procedure = Procedure(name=..., steps=[
-    ...
+procedure = Procedure(name="create", steps=[
+
 ])
