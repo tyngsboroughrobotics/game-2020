@@ -1,4 +1,4 @@
-HOSTNAME=root@pepper.local
+HOSTNAME=root@192.168.125.1
 SSH=ssh -t ${HOSTNAME}
 PROJECT_ROOT=/home/root/Documents/KISS/Default\ User/botball-game
 PROJECT_ROOT_SCP="/home/root/Documents/KISS/Default\\ User/botball-game"
