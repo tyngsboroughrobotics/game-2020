@@ -8,6 +8,7 @@ CONFIG_DIRECTORY=/etc/ths-botball-conf
 init:
 	@git submodule init
 	@make update-botball
+	@pip3 install lib3to6
 
 update-botball:
 	@git submodule update --remote botball

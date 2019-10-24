@@ -21,6 +21,6 @@ from botball.core.procedure import step, Procedure
 
 # Build your procedure here, eg:
 #
-# procedure = Procedure(name=..., steps=[
-#     ...
-# ])
+procedure = Procedure(name=..., steps=[
+    ...
+])

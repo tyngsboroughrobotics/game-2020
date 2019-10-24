@@ -1,12 +1,15 @@
 import sys; sys.path.insert(0, "/home/root/Documents/KISS/Default User/botball-game/_botball_build")
 
-from botball.core import choose_game_procedure
-from src import demobot_procedure, create_procedure
+from botball.core.helpers.choose_game_procedure import RobotConfig
 
 if __name__ == "__main__":
-    procedure_run = choose_game_procedure(
-        demobot=demobot_procedure.procedure,
-        create=create_procedure.procedure
-    )
+    config = RobotConfig()
 
-    procedure_run()
+    if config.robot_type == "demobot":
+        from src.demobot_procedure import procedure
+    else:
+        from src.create_procedure import procedure
+
+    procedure.run(
+        debug=config.debug_enabled
+    )
