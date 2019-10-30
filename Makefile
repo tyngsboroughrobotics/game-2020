@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := deploy
+
 HOSTNAME=root@192.168.125.1
 SSH=ssh -t ${HOSTNAME}
 PROJECT_ROOT=/home/root/Documents/KISS/Default\ User/botball-game
@@ -43,7 +45,7 @@ build:
 	@mv botball/_py2_build/* _build/_botball_build/
 
 	@# Build Game
-	@cp -r src/ _build/src/
+	@cp -r src/* _build/src/
 	@find _build/src/ -name "*.py" -exec make __build-file file='{}' \; >/dev/null
 	@cp __main__.py _build/__main__.py
 	@make __build-file _build/__main__.py >/dev/null
