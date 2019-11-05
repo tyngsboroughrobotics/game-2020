@@ -67,10 +67,10 @@ run:
 
 deploy:
 	@echo "[botball-dev] Building project"
-	@make build &> /dev/null
+	@make build
 
 	@echo "[botball-dev] Installing to robot"
-	@make install &> /dev/null
+	@make install
 
 	@echo "[botball-dev] Running program"
 	@make run

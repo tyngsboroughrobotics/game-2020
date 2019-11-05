@@ -21,5 +21,5 @@ def move():
 # - Procedure
 
 procedure = Procedure(name="demobot", steps=[
-    move.repeat(2),
+    move,
 ])
