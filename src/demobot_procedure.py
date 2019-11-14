@@ -8,6 +8,7 @@ print("Hello from Aman")
 print("Hello from Tirth")
 print("Hello from Jack")
 print("Hello from Kunj")
+print("Hello from Sam")
 # - Components
 
 left_motor = Motor(port=0, speed=1.0)
