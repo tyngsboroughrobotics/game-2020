@@ -5,6 +5,7 @@ from botball.core.components import Motor, WheelGroup, Direction, Servo
 
 print("Hello from Wilson!")
 print("Hello from Aman")
+print("Hello from Tirth")
 # - Components
 
 left_motor = Motor(port=0, speed=1.0)
