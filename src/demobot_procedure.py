@@ -30,7 +30,7 @@ def move():
     wheels.turn_right(90)
     wheels.turn_left(90)
 
-    sleep(1)
+    sleep(23)
 
     wheels.turn_right(180)
     wheels.turn_left(180)
