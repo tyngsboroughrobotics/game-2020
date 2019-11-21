@@ -24,7 +24,7 @@ def move():
                 # position between 0 and 1
                 servo_position = scale(bbox.y, 0, camera.height, 0, 1)
 
-                # TODO: Finish
+                arm_servo.set_position_to(servo_position)
 
 # - Procedure
 
