@@ -1,15 +1,8 @@
-from time import sleep
-
+from botball.core.helpers import scale
 from botball.core.procedure import step, Procedure
 from botball.core.components import Motor, WheelGroup, Direction, Servo
+from botball.core.components.devices.camera import Camera
 
-print("Hello from Wilson!")
-print("Hello from Aman")
-print("Hello from Tirth")
-print("Hello from Jack")
-print("Hello from Kunj")
-print("Hello from Sam")
-print("Hello from Will")
 # - Components
 
 left_motor = Motor(port=0, speed=1.0)
@@ -22,24 +15,16 @@ arm_servo = Servo(port=5, speed=1.0)
 
 @step(name="Move", description="Moves across the table")
 def move():
-    wheels.turn_right(45)
-    wheels.turn_left(45)
+    with Camera(tracking_color="red") as camera:
+        while True:
+            if camera.object_is_present():
+                bbox = camera.object_bbox()
 
-    sleep(1)
+                # Map the position of the object in the camera frame to a servo
+                # position between 0 and 1
+                servo_position = scale(bbox.y, 0, camera.height, 0, 1)
 
-    wheels.turn_right(90)
-    wheels.turn_left(90)
-
-    sleep(23)
-    sleep(2)
-
-    wheels.turn_right(180)
-    wheels.turn_left(180)
-
-    sleep(1)
-
-    wheels.turn_right(360)
-    wheels.turn_left(360)
+                # TODO: Finish
 
 # - Procedure
 
