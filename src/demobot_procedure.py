@@ -9,7 +9,7 @@ left_motor = Motor(port=0, speed=1.0)
 right_motor = Motor(port=1, speed=1.0)
 wheels = WheelGroup(left_motor, right_motor)
 
-arm_servo = Servo(port=5, speed=1.0)
+arm_servo = Servo(port=0, speed=1.0)
 
 # - Steps
 
