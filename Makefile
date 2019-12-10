@@ -50,9 +50,12 @@ build:
 	@cp __main__.py _build/__main__.py
 	@make __build-file _build/__main__.py >/dev/null
 
+	@# Remove cache files
+	find . -name "*.pyc" -type f -delete
+
 	@# Create executable
 	@touch ${EXECUTABLE}
-	@echo "#!/bin/bash\n/usr/bin/python -B ${PROJECT_ROOT}/__main__.py" > ${EXECUTABLE}
+	@echo "#!/bin/bash\necho "Running..."\n/usr/bin/python ${PROJECT_ROOT}/__main__.py" > ${EXECUTABLE}
 	@chmod +x ${EXECUTABLE}
 
 install:
@@ -63,7 +66,7 @@ install:
 	@scp -C -r _build/* botball-game.project.json ${HOSTNAME}:${PROJECT_ROOT_SCP}
 
 run:
-	@${SSH} "find . -name "*.pyc" -type f -delete; echo; ${PROJECT_ROOT}/bin/botball_user_program"
+	@${SSH} "echo; ${PROJECT_ROOT}/bin/botball_user_program"
 
 deploy:
 	@echo "[botball-dev] Building project"

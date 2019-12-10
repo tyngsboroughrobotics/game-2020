@@ -29,17 +29,16 @@ def move():
 
     with Camera(tracking_color="red") as camera:
         print("camera is connected")
-        while True:
-            print("foo")
-            # if camera.object_is_present():
-            #     bbox = camera.object_bbox()
-            #
-            #     # Map the position of the object in the camera frame to a servo
-            #     # position between 0 and 1
-            #     servo_position = scale(bbox.uly, 0, camera.height, 0, 1)
-            #     print(servo_position)
-            #
-            #     arm_servo.set_position_to(servo_position)
+        # while True:
+        #     if camera.object_is_present():
+        #         bbox = camera.object_bbox()
+        #
+        #         # Map the position of the object in the camera frame to a servo
+        #         # position between 0 and 1
+        #         servo_position = scale(bbox.uly, 0, camera.height, 0, 1)
+        #         print(servo_position)
+        #
+        #         arm_servo.set_position_to(servo_position)
 
 # - Procedure
 
