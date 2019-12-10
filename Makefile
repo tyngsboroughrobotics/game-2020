@@ -51,7 +51,7 @@ build:
 	@make __build-file _build/__main__.py >/dev/null
 
 	@# Remove cache files
-	find . -name "*.pyc" -type f -delete
+	@find . -name "*.pyc" -type f -delete
 
 	@# Create executable
 	@touch ${EXECUTABLE}
