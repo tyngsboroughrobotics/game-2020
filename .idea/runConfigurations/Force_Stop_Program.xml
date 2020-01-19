@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Force-Stop Program" type="BashConfigurationType" factoryName="Bash">
+    <module name="game2020" />
+    <option name="INTERPRETER_OPTIONS" value="-c" />
+    <option name="INTERPRETER_PATH" value="bash" />
+    <option name="PROJECT_INTERPRETER" value="false" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="make force-stop" />
+    <option name="PARAMETERS" value="" />
+    <method v="2" />
+  </configuration>
+</component>

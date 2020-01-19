@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := deploy
 
-HOSTNAME=root@192.168.125.1
+HOSTNAME=root@192.168.124.1
 SSH=ssh -t ${HOSTNAME}
 PROJECT_ROOT=/home/root/Documents/KISS/Default\ User/botball-game
 PROJECT_ROOT_SCP="/home/root/Documents/KISS/Default\\ User/botball-game"
@@ -55,7 +55,7 @@ build:
 
 	@# Create executable
 	@touch ${EXECUTABLE}
-	@echo "#!/bin/bash\necho "Running..."\n/usr/bin/python ${PROJECT_ROOT}/__main__.py" > ${EXECUTABLE}
+	@echo "#!/bin/bash\necho "Running..."\n/usr/bin/python -u ${PROJECT_ROOT}/__main__.py" > ${EXECUTABLE}
 	@chmod +x ${EXECUTABLE}
 
 install:
@@ -77,3 +77,6 @@ deploy:
 
 	@echo "[botball-dev] Running program"
 	@make run
+
+force-stop:
+	@${SSH} "killall python"
