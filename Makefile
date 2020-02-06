@@ -1,82 +1,47 @@
-.DEFAULT_GOAL := deploy
+# - Configuration
 
-HOSTNAME=root@192.168.124.1
-SSH=ssh -t ${HOSTNAME}
-PROJECT_ROOT=/home/root/Documents/KISS/Default\ User/botball-game
-PROJECT_ROOT_SCP="/home/root/Documents/KISS/Default\\ User/botball-game"
-EXECUTABLE=_build/bin/botball_user_program
-CONFIG_DIRECTORY=/etc/ths-botball-conf
+.DEFAULT_GOAL := copy_and_run
 
-init:
-	@git submodule init
-	@make update-botball
-	@pip3 install lib3to6
+IP_ADDRESS=pi@raspberrypi.local
+SSH_PASSWORD="wallaby"
 
-update-botball:
-	@git submodule update --remote botball
+PROJECT_DIR=/home/root/Documents/KISS/Default\ User/botball-game
+CONFIG_DIR=/etc/ths-botball-conf
 
-configure-as-demobot:
-	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/demobot; rm -f ${CONFIG_DIRECTORY}/create"
+SSHPASS=sshpass -p ${SSH_PASSWORD}
 
-configure-as-create:
-	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/demobot; touch ${CONFIG_DIRECTORY}/create"
+# - Transferring project files
 
-configure-debug-enable:
-	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; touch ${CONFIG_DIRECTORY}/debug"
+copy_to_robot:
+	${SSHPASS} rsync -a --delete -x -v \
+		--exclude='/.git' --filter="dir-merge,- .gitignore" \
+		--rsync-path="sudo rsync" \
+		. ${IP_ADDRESS}:"${PROJECT_DIR}/"
 
-configure-debug-disable:
-	@${SSH} "mkdir -p ${CONFIG_DIRECTORY}; rm -f ${CONFIG_DIRECTORY}/debug"
+delete_on_robot:
+	${SSHPASS} ssh ${IP_ADDRESS} \
+		"sudo rm -rf ${PROJECT_DIR}"
 
-clean:
-	@rm -rf _build/
-	@rm -rf botball/_py2_build/
+# - Running project on robot
 
-__build-file: # call using `make __build-file file=path/to/file`
-	@python3 -m lib3to6 $(file) --in-place
+run_on_robot:
+	${SSHPASS} ssh ${IP_ADDRESS} \
+		"${PROJECT_DIR}/bin/botball_user_program"
 
-build:
-	@make clean
-	@mkdir -p _build/src/
-	@mkdir -p _build/bin/
-	@mkdir -p _build/_botball_build/
+copy_and_run:
+	make copy_to_robot
+	make run_on_robot
 
-	@# Build Botball for Python
-	@cd botball; make build; cd ..
-	@mv botball/_py2_build/* _build/_botball_build/
+# - Configuring robot settings
 
-	@# Build Game
-	@cp -r src/* _build/src/
-	@find _build/src/ -name "*.py" -exec make __build-file file='{}' \; >/dev/null
-	@cp __main__.py _build/__main__.py
-	@make __build-file _build/__main__.py >/dev/null
+configure_robot_name:
+	${SSHPASS} ssh ${IP_ADDRESS} \
+		"sudo bash -c \"mkdir -p ${CONFIG_DIR}; touch ${CONFIG_DIR}/robot_type; echo '$(name)' > ${CONFIG_DIR}/robot_type\""
 
-	@# Remove cache files
-	@find . -name "*.pyc" -type f -delete
+configure_debug_enabled:
+	${SSHPASS} ssh ${IP_ADDRESS} \
+		"sudo bash -c \"mkdir -p ${CONFIG_DIR}; touch ${CONFIG_DIR}/debug_enabled\""
 
-	@# Create executable
-	@touch ${EXECUTABLE}
-	@echo "#!/bin/bash\necho "Running..."\n/usr/bin/python -u ${PROJECT_ROOT}/__main__.py" > ${EXECUTABLE}
-	@chmod +x ${EXECUTABLE}
-
-install:
-	@# Remove any old files
-	@${SSH} "rm -rf ${PROJECT_ROOT}; mkdir -p ${PROJECT_ROOT}"
-
-	@# Copy build folder
-	@scp -C -r _build/* botball-game.project.json ${HOSTNAME}:${PROJECT_ROOT_SCP}
-
-run:
-	@${SSH} "echo; ${PROJECT_ROOT}/bin/botball_user_program"
-
-deploy:
-	@echo "[botball-dev] Building project"
-	@make build
-
-	@echo "[botball-dev] Installing to robot"
-	@make install
-
-	@echo "[botball-dev] Running program"
-	@make run
-
-force-stop:
-	@${SSH} "killall python"
+configure_debug_disabled:
+	${SSHPASS} ssh ${IP_ADDRESS} \
+		"sudo rm ${CONFIG_DIR}/debug_enabled"

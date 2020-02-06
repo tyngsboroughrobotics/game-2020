@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/game2020.iml" filepath="$PROJECT_DIR$/.idea/game2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/botball-project-template.iml" filepath="$PROJECT_DIR$/.idea/botball-project-template.iml" />
     </modules>
   </component>
 </project>

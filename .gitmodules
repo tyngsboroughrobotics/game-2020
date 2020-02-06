@@ -1,3 +1,4 @@
 [submodule "botball"]
 	path = botball
-	url = https://github.com/tyngsboroughrobotics/botball.git
+	url = https://github.com/tyngsboroughrobotics/botball
+	branch = master
