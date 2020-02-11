@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL := copy_and_run
 
-IP_ADDRESS=pi@raspberrypi.local
+IP_ADDRESS=pi@192.168.125.1
 SSH_PASSWORD="wallaby"
 
 PROJECT_DIR=/home/root/Documents/KISS/Default\ User/botball-game
