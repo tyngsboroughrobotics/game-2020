@@ -15,3 +15,14 @@ The code in this repository contains **our team's code** for **our strategy** in
 ## Contributing
 
 We welcome all contributions that are in compliance with the above terms, and encourage you to check out our work with [Botball for Python](https://github.com/tyngsboroughrobotics/botball)!
+
+## How to use the REPL
+
+Python comes with a REPL that you can use to rapidly design and test your robot's code by executing statements as you type them. To use it, go into your terminal and run:
+
+```bash
+make ssh
+cd /home/root/Documents/KISS/Default\ User/botball-game
+python3.8
+from botball import *
+```
