@@ -26,3 +26,5 @@ cd /home/root/Documents/KISS/Default\ User/botball-game
 python3.8
 from botball import *
 ```
+
+To exit the REPL, press <kbd>Ctrl</kbd><kbd>D</kbd> and then type `exit`.
