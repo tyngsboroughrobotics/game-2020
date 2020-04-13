@@ -1,0 +1,25 @@
+Copyright (c) 2019-present Tyngsborough High School Robotics Team. All rights
+reserved.
+
+The code in this repository contains our team's code for our strategy in the
+Botball competition. While other teams may use it for guidance and inspiration,
+it would be cheating and against the spirit of the game to directly use our code
+for your team's robots. Therefore there are some conditions attached to the use
+of the code contained in this repository:
+
+1. Viewing the contents of the `game/` folder, which contains our strategy, is
+   allowed for guidance and inspiration only, and not for use or incorporation
+   into your robotics team's code. The rest of the repository, including
+   configuration files and Botball for Python, is available under the MIT
+   License.
+
+2. After July 31, 2020, all code from commits up to that date is available for
+   everyone to view and use under the MIT License. Since we may use this
+   repository for another strategy in the future, files changed by commits made
+   after that date are subject to clause 1. Please check the commit log to
+   verify which files were changed and when.
+
+3. Members of the Tyngsborough High School Robotics Team always have access to
+   all files under the MIT License.
+
+The MIT License is available at https://choosealicense.com/licenses/mit/.
