@@ -2,7 +2,7 @@
 
 <img src="https://i.postimg.cc/3NZfHT1n/THS-Robotics-Logo-Dual.png" style="display: block; margin: 0 auto; height: 10em;">
 
-This repository holds the code for the Tyngsborough High School Robotics team's 2020 Botball game strategy.
+This repository holds the code for the Tyngsborough High School Robotics team's Botball game strategy.
 
 We developed and are using the [Botball for Python](botball) library to write our code. The library is open source and we encourage other teams to use it and contribute!
 
