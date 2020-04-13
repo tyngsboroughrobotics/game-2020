@@ -1,3 +1,4 @@
+from .camera import *
 from .configuration import *
 from .create import *
 from .game import *

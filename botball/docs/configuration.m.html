@@ -974,6 +974,10 @@ table {
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
+        <span class="class_name"><a href="#botball.configuration.CameraConfiguration">CameraConfiguration</a></span>
+        
+        </li>
+        <li class="mono">
         <span class="class_name"><a href="#botball.configuration.MotorConfiguration">MotorConfiguration</a></span>
         
         </li>
@@ -1028,6 +1032,74 @@ table {
 
 
     <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="botball.configuration.CameraConfiguration" class="name">class <span class="ident">CameraConfiguration</span></p>
+      
+  
+    <div class="desc"><p>Stores the configuration for the camera.</p></div>
+  <div class="source_cont">
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#botball.configuration.CameraConfiguration">CameraConfiguration</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="botball.configuration.CameraConfiguration.channel" class="name">var <span class="ident">channel</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The channel on which the camera should check for objects. This shouldn't
+need to be changed if you use the provided configuration files.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.configuration.CameraConfiguration.confidence_threshold" class="name">var <span class="ident">confidence_threshold</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The minimum value returned by <code>get_object_confidence</code> for an object to be
+recognized by the camera.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.configuration.CameraConfiguration.height_offset" class="name">var <span class="ident">height_offset</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The number of pixels to offset the camera boundaries to make object tracking
+more accurate.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.configuration.CameraConfiguration.refresh_frames" class="name">var <span class="ident">refresh_frames</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The number of frames the camera should fetch during a refresh before
+tracking objects. The higher the number, the more accurate object tracking
+will be, but the longer it will take for refreshes to occur.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
       
       <div class="item">
       <p id="botball.configuration.MotorConfiguration" class="name">class <span class="ident">MotorConfiguration</span></p>

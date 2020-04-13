@@ -64,3 +64,15 @@ class Timer:
         end_date = datetime.now()
         difference = end_date - self.start_date
         return difference.total_seconds()
+
+
+class Rectangle(object):
+    '''
+    Represents a rectangle.
+    '''
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height

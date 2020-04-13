@@ -106,3 +106,34 @@ class WheelsConfiguration(object):
             multiplier = (-2.781096509 * (10 ** -6) * (degrees ** 2) + 1.922759857 * (10 ** -3) * degrees + 1.093333333)
 
         return degrees * multiplier / 10
+
+
+class CameraConfiguration(object):
+    '''
+    Stores the configuration for the camera.
+    '''
+
+    channel = 0
+    '''
+    The channel on which the camera should check for objects. This shouldn't
+    need to be changed if you use the provided configuration files.
+    '''
+
+    refresh_frames = 20
+    '''
+    The number of frames the camera should fetch during a refresh before
+    tracking objects. The higher the number, the more accurate object tracking
+    will be, but the longer it will take for refreshes to occur.
+    '''
+
+    confidence_threshold = 0.42
+    '''
+    The minimum value returned by `get_object_confidence` for an object to be
+    recognized by the camera.
+    '''
+
+    height_offset = 15
+    '''
+    The number of pixels to offset the camera boundaries to make object tracking
+    more accurate.
+    '''

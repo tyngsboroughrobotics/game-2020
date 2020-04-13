@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <title>botball.helpers API documentation</title>
+    <title>botball.camera API documentation</title>
     <meta name="description" content="" />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -969,43 +969,25 @@ table {
   <div id="sidebar">
     <h1>Index</h1>
     <ul id="index">
-    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
-      
-  <ul>
-    <li class="mono"><a href="#botball.helpers.forward">forward</a></li>
-    <li class="mono"><a href="#botball.helpers.left">left</a></li>
-    <li class="mono"><a href="#botball.helpers.reverse">reverse</a></li>
-    <li class="mono"><a href="#botball.helpers.right">right</a></li>
-  </ul>
 
-    </li>
-
-    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
-      
-  <ul>
-    <li class="mono"><a href="#botball.helpers.run_in_background">run_in_background</a></li>
-    <li class="mono"><a href="#botball.helpers.scale">scale</a></li>
-  </ul>
-
-    </li>
 
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
-        <span class="class_name"><a href="#botball.helpers.Rectangle">Rectangle</a></span>
+        <span class="class_name"><a href="#botball.camera.Camera">Camera</a></span>
         
           
   <ul>
-    <li class="mono"><a href="#botball.helpers.Rectangle.__init__">__init__</a></li>
-  </ul>
-
-        </li>
-        <li class="mono">
-        <span class="class_name"><a href="#botball.helpers.Timer">Timer</a></span>
-        
-          
-  <ul>
-    <li class="mono"><a href="#botball.helpers.Timer.__init__">__init__</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.__init__">__init__</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.confidence">confidence</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.distance_to_object">distance_to_object</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.height">height</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.number_of_objects">number_of_objects</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.object_bounding_box">object_bounding_box</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.object_is_present">object_is_present</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.object_is_trackable">object_is_trackable</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.refresh">refresh</a></li>
+    <li class="mono"><a href="#botball.camera.Camera.set_color">set_color</a></li>
   </ul>
 
         </li>
@@ -1023,90 +1005,22 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">botball.helpers</span> module</h1>
+  <h1 class="title"><span class="name">botball.camera</span> module</h1>
   
   
 
   </header>
 
   <section id="section-items">
-    <h2 class="section-title" id="header-variables">Module variables</h2>
-      <div class="item">
-      <p id="botball.helpers.forward" class="name">var <span class="ident">forward</span></p>
-      
-  
-    <div class="desc"><p>Used to represent the forward direction on wheels and motors.</p></div>
-  <div class="source_cont">
-</div>
 
-      </div>
-      <div class="item">
-      <p id="botball.helpers.left" class="name">var <span class="ident">left</span></p>
-      
-  
-    <div class="desc"><p>Used to represent the left/counterclockwise direction on wheels and motors.</p></div>
-  <div class="source_cont">
-</div>
-
-      </div>
-      <div class="item">
-      <p id="botball.helpers.reverse" class="name">var <span class="ident">reverse</span></p>
-      
-  
-    <div class="desc"><p>Used to represent the reverse direction on wheels and motors.</p></div>
-  <div class="source_cont">
-</div>
-
-      </div>
-      <div class="item">
-      <p id="botball.helpers.right" class="name">var <span class="ident">right</span></p>
-      
-  
-    <div class="desc"><p>Used to represent the right/clockwise direction on wheels and motors.</p></div>
-  <div class="source_cont">
-</div>
-
-      </div>
-
-    <h2 class="section-title" id="header-functions">Functions</h2>
-      
-  <div class="item">
-    <div class="name def" id="botball.helpers.run_in_background">
-    <p>def <span class="ident">run_in_background</span>(</p><p>block)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Run <code>block</code> on a background thread.</p></div>
-  <div class="source_cont">
-</div>
-
-  </div>
-  
-      
-  <div class="item">
-    <div class="name def" id="botball.helpers.scale">
-    <p>def <span class="ident">scale</span>(</p><p>number, start_range, end_range)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Scales a number from one range to another.</p></div>
-  <div class="source_cont">
-</div>
-
-  </div>
-  
 
     <h2 class="section-title" id="header-classes">Classes</h2>
       
       <div class="item">
-      <p id="botball.helpers.Rectangle" class="name">class <span class="ident">Rectangle</span></p>
+      <p id="botball.camera.Camera" class="name">class <span class="ident">Camera</span></p>
       
   
-    <div class="desc"><p>Represents a rectangle.</p></div>
+    <div class="desc"><p>Represents a USB camera connected to the robot.</p></div>
   <div class="source_cont">
 </div>
 
@@ -1114,20 +1028,167 @@ table {
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#botball.helpers.Rectangle">Rectangle</a></li>
+          <li><a href="#botball.camera.Camera">Camera</a></li>
           <li>builtins.object</li>
           </ul>
           <h3>Static methods</h3>
             
   <div class="item">
-    <div class="name def" id="botball.helpers.Rectangle.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, x, y, width, height)</p>
+    <div class="name def" id="botball.camera.Camera.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, color)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
+    <div class="desc"><p>Initializes the camera with a color to track.</p>
+<p><strong>Warning:</strong> If the camera is not connected to the robot, then the
+program will crash.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.confidence">
+    <p>def <span class="ident">confidence</span>(</p><p>self, object_index=0)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the camera's confidence that the object is in the field of view,
+or <code>None</code> if the object is not found at all.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.distance_to_object">
+    <p>def <span class="ident">distance_to_object</span>(</p><p>self, object_height_cm, object_index=0)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the distance to an object in the field of view, or <code>None</code> if
+there is no object. <code>object_height</code> is the height of the desired object
+in cm. This should be a known value based on the real-world measurement
+of the desired object.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.height">
+    <p>def <span class="ident">height</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>The height of the camera frame in pixels, adjusted for offset.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.number_of_objects">
+    <p>def <span class="ident">number_of_objects</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>The number of trackable objects currently in the field of view.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.object_bounding_box">
+    <p>def <span class="ident">object_bounding_box</span>(</p><p>self, object_index=0)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the bounding box for an object in the field of view, or <code>None</code>
+if there is no object.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.object_is_present">
+    <p>def <span class="ident">object_is_present</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Whether an object of the current color is present in the field of view.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.object_is_trackable">
+    <p>def <span class="ident">object_is_trackable</span>(</p><p>self, object_index=0)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns whether an object is considered to be visible enough to be
+trackable by the camera, or <code>None</code> if the object is not found at all.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.refresh">
+    <p>def <span class="ident">refresh</span>(</p><p>self, number_of_frames=20)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Refreshes the camera by collecting the specified number of frames, to
+make object tracking more accurate. Blocks the thread until finished.</p>
+<p>You shouldn't normally need to call this method yourself; it is called
+automatically during initialization and when the camera's color is
+changed.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="botball.camera.Camera.set_color">
+    <p>def <span class="ident">set_color</span>(</p><p>self, color)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Change the color to track, so objects of that color will be detected.</p></div>
   <div class="source_cont">
 </div>
 
@@ -1135,99 +1196,11 @@ table {
   
           <h3>Instance variables</h3>
             <div class="item">
-            <p id="botball.helpers.Rectangle.height" class="name">var <span class="ident">height</span></p>
+            <p id="botball.camera.Camera.color" class="name">var <span class="ident">color</span></p>
             
 
             
   
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.helpers.Rectangle.width" class="name">var <span class="ident">width</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.helpers.Rectangle.x" class="name">var <span class="ident">x</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.helpers.Rectangle.y" class="name">var <span class="ident">y</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
-      </div>
-      </div>
-      
-      <div class="item">
-      <p id="botball.helpers.Timer" class="name">class <span class="ident">Timer</span></p>
-      
-  
-    <div class="desc"><p>Helper to track the duration between the time the <code>Timer</code> object was created
-and the time <code>time_elapsed</code> is accessed.</p></div>
-  <div class="source_cont">
-</div>
-
-
-      <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#botball.helpers.Timer">Timer</a></li>
-          <li>builtins.object</li>
-          </ul>
-          <h3>Static methods</h3>
-            
-  <div class="item">
-    <div class="name def" id="botball.helpers.Timer.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
-  <div class="source_cont">
-</div>
-
-  </div>
-  
-          <h3>Instance variables</h3>
-            <div class="item">
-            <p id="botball.helpers.Timer.start_date" class="name">var <span class="ident">start_date</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.helpers.Timer.time_elapsed" class="name">var <span class="ident">time_elapsed</span></p>
-            
-
-            
-  
-    <div class="desc"><p>The amount of time elapsed since this <code>Timer</code> object was created, in
-seconds.</p></div>
   <div class="source_cont">
 </div>
 
