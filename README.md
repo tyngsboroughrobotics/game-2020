@@ -1,6 +1,8 @@
 # Tyngsborough Robotics Botball Game
 
-<img src="https://i.postimg.cc/3NZfHT1n/THS-Robotics-Logo-Dual.png" style="display: block; margin: 0 auto; height: 10em;">
+<p align="center">
+  <img src="https://i.postimg.cc/3NZfHT1n/THS-Robotics-Logo-Dual.png" height=240>
+</p>
 
 This repository holds the code for the Tyngsborough High School Robotics team's Botball game strategy.
 
