@@ -1,30 +1,21 @@
-# Botball Game 2020
+# Tyngsborough Robotics Botball Game
+
+<img src="https://i.postimg.cc/3NZfHT1n/THS-Robotics-Logo-Dual.png" style="display: block; margin: 0 auto; height: 10em;">
 
 This repository holds the code for the Tyngsborough High School Robotics team's 2020 Botball game strategy.
 
-We developed and are using the [Botball for Python](https://github.com/tyngsboroughrobotics/botball) library to write our code. The library is open source and we encourage other teams to use it and contribute!
+We developed and are using the [Botball for Python](botball) library to write our code. The library is open source and we encourage other teams to use it and contribute!
 
 ## Viewing and using our code
 
-The code in this repository contains **our team's code** for **our strategy** in the competition. While other teams may use it for guidance and inspiration, it would be cheating and against the spirit of the game to directly use our code for your team's robots. Therefore there are some conditions attached to the use of this repository:
+The code in this repository contains *our team's code* for *our strategy* in the competition. While other teams may use it for guidance and inspiration, it would be cheating and against the spirit of the game to directly use our code for your team's robots. Therefore there are some conditions attached to the use of this repository, which you can read [here](LICENSE).
 
- - Viewing the contents of this repository, is allowed for guidance and inspiration only, and not for use or incorporation into your robotics team's program. This does not apply to files pertaining to the implementation of the [Botball for Python](https://github.com/tyngsboroughrobotics/botball) library, which is subject to its own license.
- - After July 31, 2020, all code in this repository is available for other teams to view and use under the MIT License.
- - Members of the Tyngsborough High School Robotics team always have access under the MIT License.
+## Running on your Wombat
+
+Make sure you have Python 3.8 installed on your Wombat (for other, newer versions, edit the `bin/botball_user_program` file). Connect to your Wombat over WiFi and run `python run_on_robot.py`. The contents of the repository will be zipped, sent over SSH to the robot, and executed.
+
+To change the configuration (including the IP address and password of the Wombat), edit `run_on_robot.py`.
 
 ## Contributing
 
-We welcome all contributions that are in compliance with the above terms, and encourage you to check out our work with [Botball for Python](https://github.com/tyngsboroughrobotics/botball)!
-
-## How to use the REPL
-
-Python comes with a REPL that you can use to rapidly design and test your robot's code by executing statements as you type them. To use it, go into your terminal and run:
-
-```bash
-make ssh
-cd /home/root/Documents/KISS/Default\ User/botball-game
-python3.8
-from botball import *
-```
-
-To exit the REPL, press <kbd>Ctrl</kbd><kbd>D</kbd> and then type `exit`.
+We welcome all contributions to [Botball for Python](botball) — feel free to submit an issue or pull request!
