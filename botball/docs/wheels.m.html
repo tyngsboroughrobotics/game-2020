@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <title>botball.create API documentation</title>
+    <title>botball.wheels API documentation</title>
     <meta name="description" content="" />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -972,7 +972,10 @@ table {
     <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
       
   <ul>
-    <li class="mono"><a href="#botball.create.libwallaby">libwallaby</a></li>
+    <li class="mono"><a href="#botball.wheels.forward">forward</a></li>
+    <li class="mono"><a href="#botball.wheels.left">left</a></li>
+    <li class="mono"><a href="#botball.wheels.reverse">reverse</a></li>
+    <li class="mono"><a href="#botball.wheels.right">right</a></li>
   </ul>
 
     </li>
@@ -981,13 +984,13 @@ table {
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
-        <span class="class_name"><a href="#botball.create.Create">Create</a></span>
+        <span class="class_name"><a href="#botball.wheels.Wheels">Wheels</a></span>
         
           
   <ul>
-    <li class="mono"><a href="#botball.create.Create.__init__">__init__</a></li>
-    <li class="mono"><a href="#botball.create.Create.drive">drive</a></li>
-    <li class="mono"><a href="#botball.create.Create.turn">turn</a></li>
+    <li class="mono"><a href="#botball.wheels.Wheels.__init__">__init__</a></li>
+    <li class="mono"><a href="#botball.wheels.Wheels.drive">drive</a></li>
+    <li class="mono"><a href="#botball.wheels.Wheels.turn">turn</a></li>
   </ul>
 
         </li>
@@ -1005,54 +1008,40 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">botball.create</span> module</h1>
+  <h1 class="title"><span class="name">botball.wheels</span> module</h1>
   
   
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.create', this);">Show source &equiv;</a></p>
-  <div id="source-botball.create" class="source">
-    <pre><code>from .libwallaby import *
-
-
-class Create(object):
-    '''
-    Allows you to control an iRobot Create connected to the robot.
-    '''
-
-    def __init__(self):
-        libwallaby.create_connect()
-
-    def drive(self, direction, cm):
-        '''
-        Move the Create the specified distance (in cm) in the specified
-        direction (`forward` or `reverse`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        pass  # TODO
-
-    def turn(self, direction, degrees):
-        '''
-        Turn the Create the specified amount (in degrees) in the specified
-        direction (`left` or `right`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        pass  # TODO
-</code></pre>
-  </div>
 
   </header>
 
   <section id="section-items">
     <h2 class="section-title" id="header-variables">Module variables</h2>
       <div class="item">
-      <p id="botball.create.libwallaby" class="name">var <span class="ident">libwallaby</span></p>
+      <p id="botball.wheels.forward" class="name">var <span class="ident">forward</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.wheels.left" class="name">var <span class="ident">left</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.wheels.reverse" class="name">var <span class="ident">reverse</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.wheels.right" class="name">var <span class="ident">right</span></p>
       
   
   <div class="source_cont">
@@ -1064,60 +1053,30 @@ class Create(object):
     <h2 class="section-title" id="header-classes">Classes</h2>
       
       <div class="item">
-      <p id="botball.create.Create" class="name">class <span class="ident">Create</span></p>
+      <p id="botball.wheels.Wheels" class="name">class <span class="ident">Wheels</span></p>
       
   
-    <div class="desc"><p>Allows you to control an iRobot Create connected to the robot.</p></div>
+    <div class="desc"><p>A controller for managing two motors acting as wheels, to allow for easily
+moving them in unison.</p>
+<p>Usually, the left and right motors won't be perfectly in alignment; you can
+multiply their speeds individually with the <code>left_offset</code> and <code>right_offset</code>
+properties. Note that these properties are very sensitive; you probably only
+need to adjust them by a small amount to get your wheels going straight!</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.create.Create', this);">Show source &equiv;</a></p>
-  <div id="source-botball.create.Create" class="source">
-    <pre><code>class Create(object):
-    '''
-    Allows you to control an iRobot Create connected to the robot.
-    '''
-
-    def __init__(self):
-        libwallaby.create_connect()
-
-    def drive(self, direction, cm):
-        '''
-        Move the Create the specified distance (in cm) in the specified
-        direction (`forward` or `reverse`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        pass  # TODO
-
-    def turn(self, direction, degrees):
-        '''
-        Turn the Create the specified amount (in degrees) in the specified
-        direction (`left` or `right`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        pass  # TODO
-</code></pre>
-  </div>
 </div>
 
 
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#botball.create.Create">Create</a></li>
+          <li><a href="#botball.wheels.Wheels">Wheels</a></li>
           <li>builtins.object</li>
           </ul>
           <h3>Static methods</h3>
             
   <div class="item">
-    <div class="name def" id="botball.create.Create.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self)</p>
+    <div class="name def" id="botball.wheels.Wheels.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, left_motor, right_motor, left_offset=1, right_offset=1)</p>
     </div>
     
 
@@ -1125,80 +1084,89 @@ class Create(object):
   
     <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.create.Create.__init__', this);">Show source &equiv;</a></p>
-  <div id="source-botball.create.Create.__init__" class="source">
-    <pre><code>def __init__(self):
-    libwallaby.create_connect()
-</code></pre>
-  </div>
 </div>
 
   </div>
   
             
   <div class="item">
-    <div class="name def" id="botball.create.Create.drive">
+    <div class="name def" id="botball.wheels.Wheels.drive">
     <p>def <span class="ident">drive</span>(</p><p>self, direction, cm)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Move the Create the specified distance (in cm) in the specified
+    <div class="desc"><p>Move both wheels the specified distance (in cm) in the specified
 direction (<code>forward</code> or <code>reverse</code>).</p>
 <p>Note that this function blocks until finished; if you don't want to
 block the current thread (eg. to control multiple motors at once), call
 it on a background thread. This class is not necessarily thread-safe.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.create.Create.drive', this);">Show source &equiv;</a></p>
-  <div id="source-botball.create.Create.drive" class="source">
-    <pre><code>def drive(self, direction, cm):
-    '''
-    Move the Create the specified distance (in cm) in the specified
-    direction (`forward` or `reverse`).
-    Note that this function blocks until finished; if you don't want to
-    block the current thread (eg. to control multiple motors at once), call
-    it on a background thread. This class is not necessarily thread-safe.
-    '''
-    pass  # TODO
-</code></pre>
-  </div>
 </div>
 
   </div>
   
             
   <div class="item">
-    <div class="name def" id="botball.create.Create.turn">
+    <div class="name def" id="botball.wheels.Wheels.turn">
     <p>def <span class="ident">turn</span>(</p><p>self, direction, degrees)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Turn the Create the specified amount (in degrees) in the specified
+    <div class="desc"><p>Turn both wheels the specified amount (in degrees) in the specified
 direction (<code>left</code> or <code>right</code>).</p>
 <p>Note that this function blocks until finished; if you don't want to
 block the current thread (eg. to control multiple motors at once), call
 it on a background thread. This class is not necessarily thread-safe.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.create.Create.turn', this);">Show source &equiv;</a></p>
-  <div id="source-botball.create.Create.turn" class="source">
-    <pre><code>def turn(self, direction, degrees):
-    '''
-    Turn the Create the specified amount (in degrees) in the specified
-    direction (`left` or `right`).
-    Note that this function blocks until finished; if you don't want to
-    block the current thread (eg. to control multiple motors at once), call
-    it on a background thread. This class is not necessarily thread-safe.
-    '''
-    pass  # TODO
-</code></pre>
-  </div>
 </div>
 
   </div>
   
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="botball.wheels.Wheels.left_motor" class="name">var <span class="ident">left_motor</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.wheels.Wheels.left_offset" class="name">var <span class="ident">left_offset</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.wheels.Wheels.right_motor" class="name">var <span class="ident">right_motor</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.wheels.Wheels.right_offset" class="name">var <span class="ident">right_offset</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
       </div>
       </div>
 

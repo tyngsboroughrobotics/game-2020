@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <title>botball.servo API documentation</title>
+    <title>botball.configuration API documentation</title>
     <meta name="description" content="" />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -969,23 +969,38 @@ table {
   <div id="sidebar">
     <h1>Index</h1>
     <ul id="index">
-    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
-      
-  <ul>
-    <li class="mono"><a href="#botball.servo.libwallaby">libwallaby</a></li>
-  </ul>
-
-    </li>
 
 
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
-        <span class="class_name"><a href="#botball.servo.Servo">Servo</a></span>
+        <span class="class_name"><a href="#botball.configuration.MotorConfiguration">MotorConfiguration</a></span>
+        
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#botball.configuration.RobotConfiguration">RobotConfiguration</a></span>
         
           
   <ul>
-    <li class="mono"><a href="#botball.servo.Servo.__init__">__init__</a></li>
+    <li class="mono"><a href="#botball.configuration.RobotConfiguration.robot_name">robot_name</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#botball.configuration.ServoConfiguration">ServoConfiguration</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#botball.configuration.ServoConfiguration.raw_position_range">raw_position_range</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#botball.configuration.WheelsConfiguration">WheelsConfiguration</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#botball.configuration.WheelsConfiguration.turn_amount">turn_amount</a></li>
   </ul>
 
         </li>
@@ -1003,199 +1018,209 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">botball.servo</span> module</h1>
+  <h1 class="title"><span class="name">botball.configuration</span> module</h1>
   
   
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.servo', this);">Show source &equiv;</a></p>
-  <div id="source-botball.servo" class="source">
-    <pre><code>import time
-from .libwallaby import libwallaby
-from .helpers import scale
-from .configuration import ServoConfiguration
-
-
-class Servo(object):
-    '''
-    Represents a servo motor connected to the robot. You can control it by
-    setting the `position` property to a value between 0 and 1.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def position(self):
-        '''
-        The current position of the servo, between 0 and 1. The meaning of this
-        position depends on how your servo is oriented.
-        '''
-
-        raw_position = libwallaby.get_servo_position(self.port)
-        return scale(raw_position, ServoConfiguration.raw_position_range(), range(0, 1))
-
-    @position.setter
-    def set_position(self, position):
-        '''
-        Set the position of this servo to a value between 0 and 1. The meaning
-        of this position depends on how your servo is oriented.
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple servos at once),
-        change this value on a background thread. This class is not necessarily
-        thread-safe.
-        '''
-
-        # Enable this servo
-        libwallaby.enable_servo(self.port)
-
-        # Move the servo to the specified position
-        raw_position = scale(position, range(0, 1), ServoConfiguration.raw_position_range())
-        libwallaby.set_servo_position(int(raw_position))
-
-        # Wait until the servo finishes moving
-        time.sleep(ServoConfiguration.sleep_amount)
-
-        # Disable this servo while we're not using it to save battery life
-        libwallaby.disable_servo(self.port)
-</code></pre>
-  </div>
 
   </header>
 
   <section id="section-items">
-    <h2 class="section-title" id="header-variables">Module variables</h2>
-      <div class="item">
-      <p id="botball.servo.libwallaby" class="name">var <span class="ident">libwallaby</span></p>
-      
-  
-  <div class="source_cont">
-</div>
-
-      </div>
 
 
     <h2 class="section-title" id="header-classes">Classes</h2>
       
       <div class="item">
-      <p id="botball.servo.Servo" class="name">class <span class="ident">Servo</span></p>
+      <p id="botball.configuration.MotorConfiguration" class="name">class <span class="ident">MotorConfiguration</span></p>
       
   
-    <div class="desc"><p>Represents a servo motor connected to the robot. You can control it by
-setting the <code>position</code> property to a value between 0 and 1.</p></div>
+    <div class="desc"><p>Stores the configuration for motors.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.servo.Servo', this);">Show source &equiv;</a></p>
-  <div id="source-botball.servo.Servo" class="source">
-    <pre><code>class Servo(object):
-    '''
-    Represents a servo motor connected to the robot. You can control it by
-    setting the `position` property to a value between 0 and 1.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def position(self):
-        '''
-        The current position of the servo, between 0 and 1. The meaning of this
-        position depends on how your servo is oriented.
-        '''
-
-        raw_position = libwallaby.get_servo_position(self.port)
-        return scale(raw_position, ServoConfiguration.raw_position_range(), range(0, 1))
-
-    @position.setter
-    def set_position(self, position):
-        '''
-        Set the position of this servo to a value between 0 and 1. The meaning
-        of this position depends on how your servo is oriented.
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple servos at once),
-        change this value on a background thread. This class is not necessarily
-        thread-safe.
-        '''
-
-        # Enable this servo
-        libwallaby.enable_servo(self.port)
-
-        # Move the servo to the specified position
-        raw_position = scale(position, range(0, 1), ServoConfiguration.raw_position_range())
-        libwallaby.set_servo_position(int(raw_position))
-
-        # Wait until the servo finishes moving
-        time.sleep(ServoConfiguration.sleep_amount)
-
-        # Disable this servo while we're not using it to save battery life
-        libwallaby.disable_servo(self.port)
-</code></pre>
-  </div>
 </div>
 
 
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#botball.servo.Servo">Servo</a></li>
+          <li><a href="#botball.configuration.MotorConfiguration">MotorConfiguration</a></li>
           <li>builtins.object</li>
           </ul>
-          <h3>Static methods</h3>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="botball.configuration.MotorConfiguration.pwm_ticks" class="name">var <span class="ident">pwm_ticks</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The number of PWM ticks that occur per second. Used to control the speed of
+the motor.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="botball.configuration.MotorConfiguration.travel_time_1_cm" class="name">var <span class="ident">travel_time_1_cm</span></p>
+            
+
+            
+  
+    <div class="desc"><p>The amount of time (in seconds) it takes to travel 1 cm at full speed. Used
+to calculate how long to block while the motor is traveling.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="botball.configuration.RobotConfiguration" class="name">class <span class="ident">RobotConfiguration</span></p>
+      
+  
+    <div class="desc"><p>Stores the configuration for robot-related tasks, such as <code>choose_game</code>.</p></div>
+  <div class="source_cont">
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#botball.configuration.RobotConfiguration">RobotConfiguration</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Methods</h3>
             
   <div class="item">
-    <div class="name def" id="botball.servo.Servo.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, port)</p>
+    <div class="name def" id="botball.configuration.RobotConfiguration.robot_name">
+    <p>def <span class="ident">robot_name</span>(</p><p>cls)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
+    <div class="desc"><p>The name of the robot as set by the <code>BOTBALL_ROBOT_NAME</code> environment
+variable.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.servo.Servo.__init__', this);">Show source &equiv;</a></p>
-  <div id="source-botball.servo.Servo.__init__" class="source">
-    <pre><code>def __init__(self, port):
-    self.port = port
-</code></pre>
-  </div>
 </div>
 
   </div>
   
-          <h3>Instance variables</h3>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="botball.configuration.ServoConfiguration" class="name">class <span class="ident">ServoConfiguration</span></p>
+      
+  
+    <div class="desc"><p>Stores the configuration for servos.</p></div>
+  <div class="source_cont">
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#botball.configuration.ServoConfiguration">ServoConfiguration</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Class variables</h3>
             <div class="item">
-            <p id="botball.servo.Servo.port" class="name">var <span class="ident">port</span></p>
+            <p id="botball.configuration.ServoConfiguration.max_raw_position" class="name">var <span class="ident">max_raw_position</span></p>
             
 
             
   
+    <div class="desc"><p>The highest raw position the servo can travel without potentially causing
+damage.</p></div>
   <div class="source_cont">
 </div>
 
             </div>
             <div class="item">
-            <p id="botball.servo.Servo.position" class="name">var <span class="ident">position</span></p>
+            <p id="botball.configuration.ServoConfiguration.min_raw_position" class="name">var <span class="ident">min_raw_position</span></p>
             
 
             
   
-    <div class="desc"><p>The current position of the servo, between 0 and 1. The meaning of this
-position depends on how your servo is oriented.</p></div>
+    <div class="desc"><p>The lowest raw position the servo can travel without potentially causing
+damage.</p></div>
   <div class="source_cont">
 </div>
 
             </div>
             <div class="item">
-            <p id="botball.servo.Servo.set_position" class="name">var <span class="ident">set_position</span></p>
+            <p id="botball.configuration.ServoConfiguration.sleep_amount" class="name">var <span class="ident">sleep_amount</span></p>
             
 
             
   
-    <div class="desc"><p>The current position of the servo, between 0 and 1. The meaning of this
-position depends on how your servo is oriented.</p></div>
+    <div class="desc"><p>The amount of time (in seconds) to wait in between servo movements.</p>
+<p>For simplicity, the <code>Servo</code> implementation sleeps for the same amount of
+time, no matter how far the servo traveled. In the future we might make this
+adjust to that amount, but a constant value works for us.</p></div>
   <div class="source_cont">
 </div>
 
             </div>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="botball.configuration.ServoConfiguration.raw_position_range">
+    <p>def <span class="ident">raw_position_range</span>(</p><p>cls)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>The range starting at <code>min_raw_position</code> and ending at <code>max_raw_position</code>.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="botball.configuration.WheelsConfiguration" class="name">class <span class="ident">WheelsConfiguration</span></p>
+      
+  
+    <div class="desc"><p>Stores the configuration for wheel controllers.</p></div>
+  <div class="source_cont">
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#botball.configuration.WheelsConfiguration">WheelsConfiguration</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="botball.configuration.WheelsConfiguration.turn_amount">
+    <p>def <span class="ident">turn_amount</span>(</p><p>degrees)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>The distance (in cm) forward the left wheel and backward the right wheel
+should travel when a wheel group is performing a clockwise turn, and
+vice versa.</p>
+<p>This function has been generated using regression for the following turn
+amounts:</p>
+<ul>
+<li>45 degrees = 45 * 1.175</li>
+<li>90 degrees = 90 * 1.2425</li>
+<li>180 degrees = 180 * 1.35</li>
+<li>360 degrees = 360 * 1.425</li>
+</ul></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
       </div>
       </div>
 

@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <title>botball.sensors API documentation</title>
+    <title>botball.helpers API documentation</title>
     <meta name="description" content="" />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -972,29 +972,31 @@ table {
     <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
       
   <ul>
-    <li class="mono"><a href="#botball.sensors.libwallaby">libwallaby</a></li>
+    <li class="mono"><a href="#botball.helpers.forward">forward</a></li>
+    <li class="mono"><a href="#botball.helpers.left">left</a></li>
+    <li class="mono"><a href="#botball.helpers.reverse">reverse</a></li>
+    <li class="mono"><a href="#botball.helpers.right">right</a></li>
   </ul>
 
     </li>
 
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#botball.helpers.run_in_background">run_in_background</a></li>
+    <li class="mono"><a href="#botball.helpers.scale">scale</a></li>
+  </ul>
+
+    </li>
 
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
-        <span class="class_name"><a href="#botball.sensors.AnalogSensor">AnalogSensor</a></span>
+        <span class="class_name"><a href="#botball.helpers.Timer">Timer</a></span>
         
           
   <ul>
-    <li class="mono"><a href="#botball.sensors.AnalogSensor.__init__">__init__</a></li>
-  </ul>
-
-        </li>
-        <li class="mono">
-        <span class="class_name"><a href="#botball.sensors.DigitalSensor">DigitalSensor</a></span>
-        
-          
-  <ul>
-    <li class="mono"><a href="#botball.sensors.DigitalSensor.__init__">__init__</a></li>
+    <li class="mono"><a href="#botball.helpers.Timer.__init__">__init__</a></li>
   </ul>
 
         </li>
@@ -1012,124 +1014,106 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">botball.sensors</span> module</h1>
+  <h1 class="title"><span class="name">botball.helpers</span> module</h1>
   
   
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.sensors', this);">Show source &equiv;</a></p>
-  <div id="source-botball.sensors" class="source">
-    <pre><code>from .libwallaby import libwallaby
-from .helpers import scale
-
-
-class DigitalSensor(object):
-    '''
-    Represents a digital sensor connected to the robot.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def value(self):
-        '''
-        Returns a boolean value representing whether the sensor is activated or
-        not.
-        '''
-
-        return bool(libwallaby.digital(self.port))
-
-
-class AnalogSensor(object):
-    '''
-    Represents an analog sensor connected to the robot.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def value(self):
-        '''
-        Returns a value between 0 and 1 representing the state of the sensor.
-        '''
-
-        return scale(self.raw_value, range(0, 4095), range(0, 1))
-
-    @property
-    def raw_value(self):
-        '''
-        Returns an integer value between 0 and 4095 representing the raw state
-        of the sensor.
-        '''
-
-        return libwallaby.analog(self.port)
-</code></pre>
-  </div>
 
   </header>
 
   <section id="section-items">
     <h2 class="section-title" id="header-variables">Module variables</h2>
       <div class="item">
-      <p id="botball.sensors.libwallaby" class="name">var <span class="ident">libwallaby</span></p>
+      <p id="botball.helpers.forward" class="name">var <span class="ident">forward</span></p>
       
   
+    <div class="desc"><p>Used to represent the forward direction on wheels and motors.</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.helpers.left" class="name">var <span class="ident">left</span></p>
+      
+  
+    <div class="desc"><p>Used to represent the left/counterclockwise direction on wheels and motors.</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.helpers.reverse" class="name">var <span class="ident">reverse</span></p>
+      
+  
+    <div class="desc"><p>Used to represent the reverse direction on wheels and motors.</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.helpers.right" class="name">var <span class="ident">right</span></p>
+      
+  
+    <div class="desc"><p>Used to represent the right/clockwise direction on wheels and motors.</p></div>
   <div class="source_cont">
 </div>
 
       </div>
 
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="botball.helpers.run_in_background">
+    <p>def <span class="ident">run_in_background</span>(</p><p>block)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Run <code>block</code> on a background thread.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="botball.helpers.scale">
+    <p>def <span class="ident">scale</span>(</p><p>number, start_range, end_range)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Scales a number from one range to another.</p></div>
+  <div class="source_cont">
+</div>
+
+  </div>
+  
 
     <h2 class="section-title" id="header-classes">Classes</h2>
       
       <div class="item">
-      <p id="botball.sensors.AnalogSensor" class="name">class <span class="ident">AnalogSensor</span></p>
+      <p id="botball.helpers.Timer" class="name">class <span class="ident">Timer</span></p>
       
   
-    <div class="desc"><p>Represents an analog sensor connected to the robot.</p></div>
+    <div class="desc"><p>Helper to track the duration between the time the <code>Timer</code> object was created
+and the time <code>time_elapsed</code> is accessed.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.sensors.AnalogSensor', this);">Show source &equiv;</a></p>
-  <div id="source-botball.sensors.AnalogSensor" class="source">
-    <pre><code>class AnalogSensor(object):
-    '''
-    Represents an analog sensor connected to the robot.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def value(self):
-        '''
-        Returns a value between 0 and 1 representing the state of the sensor.
-        '''
-
-        return scale(self.raw_value, range(0, 4095), range(0, 1))
-
-    @property
-    def raw_value(self):
-        '''
-        Returns an integer value between 0 and 4095 representing the raw state
-        of the sensor.
-        '''
-
-        return libwallaby.analog(self.port)
-</code></pre>
-  </div>
 </div>
 
 
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#botball.sensors.AnalogSensor">AnalogSensor</a></li>
+          <li><a href="#botball.helpers.Timer">Timer</a></li>
           <li>builtins.object</li>
           </ul>
           <h3>Static methods</h3>
             
   <div class="item">
-    <div class="name def" id="botball.sensors.AnalogSensor.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, port)</p>
+    <div class="name def" id="botball.helpers.Timer.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self)</p>
     </div>
     
 
@@ -1137,19 +1121,13 @@ class AnalogSensor(object):
   
     <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.sensors.AnalogSensor.__init__', this);">Show source &equiv;</a></p>
-  <div id="source-botball.sensors.AnalogSensor.__init__" class="source">
-    <pre><code>def __init__(self, port):
-    self.port = port
-</code></pre>
-  </div>
 </div>
 
   </div>
   
           <h3>Instance variables</h3>
             <div class="item">
-            <p id="botball.sensors.AnalogSensor.port" class="name">var <span class="ident">port</span></p>
+            <p id="botball.helpers.Timer.start_date" class="name">var <span class="ident">start_date</span></p>
             
 
             
@@ -1159,107 +1137,13 @@ class AnalogSensor(object):
 
             </div>
             <div class="item">
-            <p id="botball.sensors.AnalogSensor.raw_value" class="name">var <span class="ident">raw_value</span></p>
+            <p id="botball.helpers.Timer.time_elapsed" class="name">var <span class="ident">time_elapsed</span></p>
             
 
             
   
-    <div class="desc"><p>Returns an integer value between 0 and 4095 representing the raw state
-of the sensor.</p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.sensors.AnalogSensor.value" class="name">var <span class="ident">value</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Returns a value between 0 and 1 representing the state of the sensor.</p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
-      </div>
-      </div>
-      
-      <div class="item">
-      <p id="botball.sensors.DigitalSensor" class="name">class <span class="ident">DigitalSensor</span></p>
-      
-  
-    <div class="desc"><p>Represents a digital sensor connected to the robot.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.sensors.DigitalSensor', this);">Show source &equiv;</a></p>
-  <div id="source-botball.sensors.DigitalSensor" class="source">
-    <pre><code>class DigitalSensor(object):
-    '''
-    Represents a digital sensor connected to the robot.
-    '''
-
-    def __init__(self, port):
-        self.port = port
-
-    @property
-    def value(self):
-        '''
-        Returns a boolean value representing whether the sensor is activated or
-        not.
-        '''
-
-        return bool(libwallaby.digital(self.port))
-</code></pre>
-  </div>
-</div>
-
-
-      <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#botball.sensors.DigitalSensor">DigitalSensor</a></li>
-          <li>builtins.object</li>
-          </ul>
-          <h3>Static methods</h3>
-            
-  <div class="item">
-    <div class="name def" id="botball.sensors.DigitalSensor.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, port)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.sensors.DigitalSensor.__init__', this);">Show source &equiv;</a></p>
-  <div id="source-botball.sensors.DigitalSensor.__init__" class="source">
-    <pre><code>def __init__(self, port):
-    self.port = port
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-          <h3>Instance variables</h3>
-            <div class="item">
-            <p id="botball.sensors.DigitalSensor.port" class="name">var <span class="ident">port</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item">
-            <p id="botball.sensors.DigitalSensor.value" class="name">var <span class="ident">value</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Returns a boolean value representing whether the sensor is activated or
-not.</p></div>
+    <div class="desc"><p>The amount of time elapsed since this <code>Timer</code> object was created, in
+seconds.</p></div>
   <div class="source_cont">
 </div>
 

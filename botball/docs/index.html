@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <title>botball.motor API documentation</title>
+    <title>botball API documentation</title>
     <meta name="description" content="" />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -972,28 +972,30 @@ table {
     <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
       
   <ul>
-    <li class="mono"><a href="#botball.motor.libwallaby">libwallaby</a></li>
-    <li class="mono"><a href="#botball.motor.reverse">reverse</a></li>
+    <li class="mono"><a href="#botball.forward">forward</a></li>
+    <li class="mono"><a href="#botball.left">left</a></li>
+    <li class="mono"><a href="#botball.reverse">reverse</a></li>
+    <li class="mono"><a href="#botball.right">right</a></li>
+    <li class="mono"><a href="#botball.stderr">stderr</a></li>
   </ul>
 
     </li>
 
 
-    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
-      <ul>
-        <li class="mono">
-        <span class="class_name"><a href="#botball.motor.Motor">Motor</a></span>
-        
-          
-  <ul>
-    <li class="mono"><a href="#botball.motor.Motor.__init__">__init__</a></li>
-    <li class="mono"><a href="#botball.motor.Motor.drive">drive</a></li>
-  </ul>
 
-        </li>
+    <li class="set"><h3><a href="#header-submodules">Sub-modules</a></h3>
+      <ul>
+        <li class="mono"><a href="configuration.m.html">botball.configuration</a></li>
+        <li class="mono"><a href="create.m.html">botball.create</a></li>
+        <li class="mono"><a href="game.m.html">botball.game</a></li>
+        <li class="mono"><a href="helpers.m.html">botball.helpers</a></li>
+        <li class="mono"><a href="libwallaby.m.html">botball.libwallaby</a></li>
+        <li class="mono"><a href="motor.m.html">botball.motor</a></li>
+        <li class="mono"><a href="sensors.m.html">botball.sensors</a></li>
+        <li class="mono"><a href="servo.m.html">botball.servo</a></li>
+        <li class="mono"><a href="wheels.m.html">botball.wheels</a></li>
       </ul>
     </li>
-
     </ul>
   </div>
 
@@ -1005,68 +1007,16 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">botball.motor</span> module</h1>
+  <h1 class="title"><span class="name">botball</span> module</h1>
   
   
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.motor', this);">Show source &equiv;</a></p>
-  <div id="source-botball.motor" class="source">
-    <pre><code>import time
-from .configuration import MotorConfiguration
-from .helpers import reverse
-from .libwallaby import libwallaby
-
-class Motor(object):
-    '''
-    Represents a motor connected to the robot. You can control it with the
-    `drive` method. The default speed for the motor is 1.0 and must be between 0
-    and 1 (1 being the fastest).
-    '''
-
-    def __init__(self, port, speed = 1.0):
-        self.port = port
-        self.speed = speed
-
-    def drive(self, direction, cm):
-        '''
-        Move the motor the specified distance (in cm) in the specified direction
-        (`forward` or `reverse`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        # Calculate the raw velocity the motor should travel from the current
-        # speed
-        velocity = int(self.speed * MotorConfiguration.pwm_ticks)
-
-        if direction == reverse:
-            velocity *= -1
-
-        # Move the motor at the calculated velocity
-        libwallaby.move_at_velocity(self.port, velocity)
-
-        # Calculate how long it will take the motor to travel
-        block_duration = Motor._block_duration(cm, velocity)
-
-        # Block until the motor has finished traveling the specified distance
-        time.sleep(block_duration)
-
-        # Turn off the motor
-        libwallaby.off(self.port)
-
-    @staticmethod
-    def _block_duration(cm, velocity):
-        return MotorConfiguration.pwm_ticks * MotorConfiguration.travel_time_1_cm * cm / velocity
-</code></pre>
-  </div>
 
   </header>
 
   <section id="section-items">
     <h2 class="section-title" id="header-variables">Module variables</h2>
       <div class="item">
-      <p id="botball.motor.libwallaby" class="name">var <span class="ident">libwallaby</span></p>
+      <p id="botball.forward" class="name">var <span class="ident">forward</span></p>
       
   
   <div class="source_cont">
@@ -1074,172 +1024,97 @@ class Motor(object):
 
       </div>
       <div class="item">
-      <p id="botball.motor.reverse" class="name">var <span class="ident">reverse</span></p>
+      <p id="botball.left" class="name">var <span class="ident">left</span></p>
       
   
   <div class="source_cont">
 </div>
 
       </div>
-
-
-    <h2 class="section-title" id="header-classes">Classes</h2>
-      
       <div class="item">
-      <p id="botball.motor.Motor" class="name">class <span class="ident">Motor</span></p>
+      <p id="botball.reverse" class="name">var <span class="ident">reverse</span></p>
       
   
-    <div class="desc"><p>Represents a motor connected to the robot. You can control it with the
-<code>drive</code> method. The default speed for the motor is 1.0 and must be between 0
-and 1 (1 being the fastest).</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.motor.Motor', this);">Show source &equiv;</a></p>
-  <div id="source-botball.motor.Motor" class="source">
-    <pre><code>class Motor(object):
-    '''
-    Represents a motor connected to the robot. You can control it with the
-    `drive` method. The default speed for the motor is 1.0 and must be between 0
-    and 1 (1 being the fastest).
-    '''
-
-    def __init__(self, port, speed = 1.0):
-        self.port = port
-        self.speed = speed
-
-    def drive(self, direction, cm):
-        '''
-        Move the motor the specified distance (in cm) in the specified direction
-        (`forward` or `reverse`).
-
-        Note that this function blocks until finished; if you don't want to
-        block the current thread (eg. to control multiple motors at once), call
-        it on a background thread. This class is not necessarily thread-safe.
-        '''
-
-        # Calculate the raw velocity the motor should travel from the current
-        # speed
-        velocity = int(self.speed * MotorConfiguration.pwm_ticks)
-
-        if direction == reverse:
-            velocity *= -1
-
-        # Move the motor at the calculated velocity
-        libwallaby.move_at_velocity(self.port, velocity)
-
-        # Calculate how long it will take the motor to travel
-        block_duration = Motor._block_duration(cm, velocity)
-
-        # Block until the motor has finished traveling the specified distance
-        time.sleep(block_duration)
-
-        # Turn off the motor
-        libwallaby.off(self.port)
-
-    @staticmethod
-    def _block_duration(cm, velocity):
-        return MotorConfiguration.pwm_ticks * MotorConfiguration.travel_time_1_cm * cm / velocity
-</code></pre>
-  </div>
-</div>
-
-
-      <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#botball.motor.Motor">Motor</a></li>
-          <li>builtins.object</li>
-          </ul>
-          <h3>Static methods</h3>
-            
-  <div class="item">
-    <div class="name def" id="botball.motor.Motor.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, port, speed=1.0)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.motor.Motor.__init__', this);">Show source &equiv;</a></p>
-  <div id="source-botball.motor.Motor.__init__" class="source">
-    <pre><code>def __init__(self, port, speed = 1.0):
-    self.port = port
-    self.speed = speed
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item">
-    <div class="name def" id="botball.motor.Motor.drive">
-    <p>def <span class="ident">drive</span>(</p><p>self, direction, cm)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Move the motor the specified distance (in cm) in the specified direction
-(<code>forward</code> or <code>reverse</code>).</p>
-<p>Note that this function blocks until finished; if you don't want to
-block the current thread (eg. to control multiple motors at once), call
-it on a background thread. This class is not necessarily thread-safe.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-botball.motor.Motor.drive', this);">Show source &equiv;</a></p>
-  <div id="source-botball.motor.Motor.drive" class="source">
-    <pre><code>def drive(self, direction, cm):
-    '''
-    Move the motor the specified distance (in cm) in the specified direction
-    (`forward` or `reverse`).
-    Note that this function blocks until finished; if you don't want to
-    block the current thread (eg. to control multiple motors at once), call
-    it on a background thread. This class is not necessarily thread-safe.
-    '''
-    # Calculate the raw velocity the motor should travel from the current
-    # speed
-    velocity = int(self.speed * MotorConfiguration.pwm_ticks)
-    if direction == reverse:
-        velocity *= -1
-    # Move the motor at the calculated velocity
-    libwallaby.move_at_velocity(self.port, velocity)
-    # Calculate how long it will take the motor to travel
-    block_duration = Motor._block_duration(cm, velocity)
-    # Block until the motor has finished traveling the specified distance
-    time.sleep(block_duration)
-    # Turn off the motor
-    libwallaby.off(self.port)
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-          <h3>Instance variables</h3>
-            <div class="item">
-            <p id="botball.motor.Motor.port" class="name">var <span class="ident">port</span></p>
-            
-
-            
-  
   <div class="source_cont">
 </div>
 
-            </div>
-            <div class="item">
-            <p id="botball.motor.Motor.speed" class="name">var <span class="ident">speed</span></p>
-            
-
-            
-  
-  <div class="source_cont">
-</div>
-
-            </div>
       </div>
+      <div class="item">
+      <p id="botball.right" class="name">var <span class="ident">right</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="botball.stderr" class="name">var <span class="ident">stderr</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
       </div>
 
+
+
+    <h2 class="section-title" id="header-submodules">Sub-modules</h2>
+      <div class="item">
+      <p class="name"><a href="configuration.m.html">botball.configuration</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="create.m.html">botball.create</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="game.m.html">botball.game</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="helpers.m.html">botball.helpers</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="libwallaby.m.html">botball.libwallaby</a></p>
+      
+  
+    <div class="desc"><p>Call functions from the <code>libwallaby</code> C library from Python. See the <code>libwallaby</code>
+documentation for a list of available functions.</p></div>
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="motor.m.html">botball.motor</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="sensors.m.html">botball.sensors</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="servo.m.html">botball.servo</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="wheels.m.html">botball.wheels</a></p>
+      
+  
+
+      </div>
   </section>
 
     </article>
