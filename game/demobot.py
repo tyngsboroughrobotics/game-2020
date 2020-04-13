@@ -49,13 +49,13 @@ def step_move_to_bottom_ramp():
     # The space between the ramp and the edge of the board isn't wide enough for
     # us to make a straight 90-degree turn, so we have to inch forward and keep
     # turning
-    right_wheel.move(reverse, cm=8)
+    right_wheel.drive(reverse, cm=8)
     wheels.drive(reverse, cm=15)
 
     # At this point the left wheel is aligned with the bottom of the ramp, so
     # we just need the right wheel to move so the robot is perfectly aligned
     # with the ramp
-    right_wheel.move(reverse, cm=35)
+    right_wheel.drive(reverse, cm=35)
 
 
 # Drive up the ramp
