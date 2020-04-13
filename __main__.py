@@ -1,9 +1,10 @@
-from game import demobot
 from botball import *
 
-if __name__ == "__main__":
-    print("\n\n@@ Press Ctrl+C to stop the program. @@")
+if __name__ == '__main__':
+    from game import demobot
 
-    choose_game_procedure(procedure_map={
-        demobot.procedure.name: demobot.procedure,
-    })()
+    game = choose_game(RobotConfiguration.robot_name(), [
+        game_from_module('demobot', demobot),
+    ])
+
+    game.run()
