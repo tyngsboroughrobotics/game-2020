@@ -8,6 +8,7 @@ PROJECT_PATH = '/home/root/Documents/KISS/Default\\ User/botball-game'
 ###   End Configuration   ###
 
 import os
+import sys
 
 def cmd(command):
     os.system(command)
@@ -19,6 +20,9 @@ cmd('clear')
 # Bundle the project into a .zip
 print('Bundling project...\n')
 cmd(f'zip -r {ZIP_NAME} . -x \\*__pycache__\\* -x .\\* -x .\\*/')
+
+if '--build-only' in sys.argv:
+    exit(0)
 
 # Copy the .zip over to the robot
 print('\nCopying project to robot...\n')
