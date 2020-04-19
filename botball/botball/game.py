@@ -58,7 +58,8 @@ class Game(object):
             step.run()
             print()
 
-        print(f'Finished game "{self.name}" in {timer.time_elapsed} seconds')
+        time_elapsed = int(round(timer.time_elapsed))
+        print(f'Finished game "{self.name}" in {time_elapsed} seconds')
 
 
 class Step(object):
@@ -91,7 +92,8 @@ class Step(object):
 
         self.function()
 
-        print(f'    Finished step "{self.name}" in {timer.time_elapsed} seconds')
+        time_elapsed = int(round(timer.time_elapsed))
+        print(f'    Finished step "{self.name}" in {time_elapsed} seconds')
 
 
 def choose_game(robot_name, games):
