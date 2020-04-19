@@ -1,4 +1,5 @@
 import os
+import sys
 
 class RobotConfiguration(object):
     '''
@@ -14,7 +15,7 @@ class RobotConfiguration(object):
 
         robot_name = os.getenv('BOTBALL_ROBOT_NAME')
 
-        if not robot_name:
+        if not robot_name and '--ignore-no-config-env' not in sys.argv:
             print('WARNING: Could not find the BOTBALL_ROBOT_NAME environment variable. Defaulting to "demobot".')
 
         return robot_name or 'demobot'
