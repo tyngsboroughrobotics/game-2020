@@ -24,10 +24,10 @@ class Camera(object):
 
         self.color = color
 
-        conf_name = f'detect-{color}'
+        conf_name = 'detect-%s' % color
 
         success = libwallaby.camera_load_config(bytes(conf_name))
-        assert success, f'Error loading camera configuration file "{conf_name}"'
+        assert success, 'Error loading camera configuration file "%s"' % conf_name
 
         self.refresh()
 

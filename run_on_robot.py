@@ -1,6 +1,6 @@
 ###     Configuration     ###
 
-IP_ADDRESS = 'pi@192.168.125.1'
+IP_ADDRESS = '192.168.125.1'
 SSH_PASSWORD = 'wallaby'
 ZIP_NAME = '.game.zip'
 PROJECT_PATH = '/home/root/Documents/KISS/Default\\ User/botball-game'
@@ -34,20 +34,31 @@ if '--build-only' in sys.argv:
 
 clear()
 
-ssh = Connection(host=f'pi@{IP_ADDRESS}', connect_kwargs={'password': SSH_PASSWORD})
+ssh = Connection(IP_ADDRESS, user='pi', connect_kwargs={'password': SSH_PASSWORD})
 
 # Copy the .zip over to the robot
 print('\nCopying project to robot...\n')
 # delete existing files
-ssh.run(f'rm -rf {PROJECT_PATH}/{ZIP_NAME}')
+ssh.run(f'sudo rm -rf {PROJECT_PATH}', echo=True)
 # copy zip file
-ssh.upload(ZIP_NAME, f'{PROJECT_PATH}/{ZIP_NAME}')
+ssh.run(f'sudo mkdir -p {PROJECT_PATH}', echo=True)
+ssh.run(f'sudo chmod -R a+rwX {PROJECT_PATH}', echo=True)
+scp_path = PROJECT_PATH.replace('\\ ', ' ')
+if platform.system() == 'Windows':
+    os.system(f'pscp -pw {SSH_PASSWORD} {ZIP_NAME} pi@{IP_ADDRESS}:\'"{scp_path}"\'')
+else:
+    import pexpect
+    scp = pexpect.spawn(f'scp {ZIP_NAME} pi@{IP_ADDRESS}:\'"{scp_path}"\'')
+    scp.expect('password:')
+    scp.sendline(SSH_PASSWORD)
+    scp.expect(pexpect.EOF)
+
 # extract KISS files so the program can appear in the botui list
-ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'bin/*\' -d {PROJECT_PATH}')
-ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'botball-game.project.json\' -d {PROJECT_PATH}')
+ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'bin/*\' -d {PROJECT_PATH}', echo=True)
+ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'botball-game.project.json\' -d {PROJECT_PATH}', echo=True)
 
 clear()
 
 # Run the game on the robot
 print('\nStarting game...\n')
-ssh.run(f'python3 {PROJECT_PATH}/{ZIP_NAME}')
+ssh.run(f'source {PROJECT_PATH}/bin/botball_user_program; echo "Done"', echo=True)

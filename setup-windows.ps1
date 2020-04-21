@@ -8,6 +8,9 @@ choco install -y git -params '"/GitAndUnixToolsOnPath"'
 # Install 7zip
 choco install -y 7zip
 
+# Install putty
+choco install putty
+
 # Install python
 choco install -y python
 
@@ -18,4 +21,4 @@ choco install -y vscode
 choco install -y github-desktop
 
 # Install python dependencies
-pip install fabric
+pip install fabric pexpect

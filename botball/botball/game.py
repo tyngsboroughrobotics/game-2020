@@ -50,7 +50,7 @@ class Game(object):
         Execute all the steps in the game in order, and log the total duration.
         '''
 
-        print(f'Running game "{self.name}" ({len(self.steps)} steps)\n')
+        print('Running game "%s" (%s steps)\n' % (self.name, len(self.steps)))
 
         timer = Timer()
 
@@ -59,7 +59,7 @@ class Game(object):
             print()
 
         time_elapsed = int(round(timer.time_elapsed))
-        print(f'Finished game "{self.name}" in {time_elapsed} seconds')
+        print('Finished game "%s" in %s seconds' % (self.name, time_elapsed))
 
 
 class Step(object):
@@ -86,14 +86,14 @@ class Step(object):
         Execute the step and log the total duration.
         '''
 
-        print(f'    Running step "{self.name}"')
+        print('    Running step "%s"' % self.name)
 
         timer = Timer()
 
         self.function()
 
         time_elapsed = int(round(timer.time_elapsed))
-        print(f'    Finished step "{self.name}" in {time_elapsed} seconds')
+        print('    Finished step "%s" in %s seconds' % (self.name, time_elapsed))
 
 
 def choose_game(robot_name, games):
@@ -111,7 +111,7 @@ def choose_game(robot_name, games):
             matching_game = game
 
     assert matching_game is not None, \
-        f'No game found for robot name {robot_name}'
+        'No game found for robot name %s' % robot_name
 
     return matching_game
 
