@@ -14,4 +14,4 @@ brew cask install visual-studio-code
 brew cask install github-desktop
 
 # Install python dependencies
-pip install pylint fabric
+pip install fabric
