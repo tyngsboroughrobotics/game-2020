@@ -5,9 +5,6 @@ refreshenv
 # Install git
 choco install -y git -params '"/GitAndUnixToolsOnPath"'
 
-# Install openssh
-choco install -y openssh --pre
-
 # Install 7zip
 choco install -y 7zip
 
