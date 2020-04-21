@@ -12,6 +12,26 @@ We developed and are using the [Botball for Python](botball) library to write ou
 
 The code in this repository contains *our team's code* for *our strategy* in the competition. While other teams may use it for guidance and inspiration, it would be cheating and against the spirit of the game to directly use our code for your team's robots. Therefore there are some conditions attached to the use of this repository, which you can read [here](LICENSE).
 
+## Setup
+
+### Windows
+
+Press the Windows key on your keyboard and then type "cmd". Then click the "run as administrator" button on the right side underneath the icon. Click "Yes" when the prompt appears. Then copy and paste this code, and press Enter:
+
+```batch
+powershell iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tyngsboroughrobotics/game/master/setup-windows.ps1'))
+```
+
+### Mac
+
+Press <kbd>Cmd</kbd><kbd>Space</kbd> on your keyboard and then type "Terminal", and press Return. Then copy and paste this code, and press Enter:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tyngsboroughrobotics/game/master/setup-macos.sh)"
+```
+
+You will have to enter your password — when you type it nothing will appear, but it's still being entered. Just press Return when you finish.
+
 ## Running on your Wombat
 
 Make sure you have Python 3.8 installed on your Wombat (for other, newer versions, edit the `bin/botball_user_program` file). Connect to your Wombat over WiFi and run `python run_on_robot.py`. The contents of the repository will be zipped, sent over SSH to the robot, and executed.
