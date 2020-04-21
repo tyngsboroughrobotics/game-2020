@@ -18,4 +18,4 @@ choco install -y vscode
 choco install -y github-desktop
 
 # Install python dependencies
-pip install pylint sshed
+pip install pylint fabric
