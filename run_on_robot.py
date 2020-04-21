@@ -13,7 +13,13 @@ from fabric import Connection
 def cmd(command):
     os.system(command)
 
-cmd('clear')
+def clear():
+    if platform.system() == 'Windows':
+        cmd('cls')
+    else:
+        cmd('clear')
+
+clear()
 
 # Bundle the project into a .zip
 print('Bundling project...\n')
@@ -26,6 +32,8 @@ else:
 if '--build-only' in sys.argv:
     exit(0)
 
+clear()
+
 ssh = Connection(host=f'pi@{IP_ADDRESS}', connect_kwargs={'password': SSH_PASSWORD})
 
 # Copy the .zip over to the robot
@@ -37,6 +45,8 @@ ssh.upload(ZIP_NAME, f'{PROJECT_PATH}/{ZIP_NAME}')
 # extract KISS files so the program can appear in the botui list
 ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'bin/*\' -d {PROJECT_PATH}')
 ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'botball-game.project.json\' -d {PROJECT_PATH}')
+
+clear()
 
 # Run the game on the robot
 print('\nStarting game...\n')
