@@ -7,27 +7,37 @@ PROJECT_PATH = '/home/root/Documents/KISS/Default\\ User/botball-game'
 
 ###   End Configuration   ###
 
-import os
-import sys
+import os, sys, platform
+import sshed
 
 def cmd(command):
     os.system(command)
-
-sshpass = f'sshpass -p {SSH_PASSWORD}'
 
 cmd('clear')
 
 # Bundle the project into a .zip
 print('Bundling project...\n')
-cmd(f'zip -r {ZIP_NAME} . -x \\*__pycache__\\* -x .\\* -x .\\*/')
+cmd(f'rm {ZIP_NAME}')
+if platform.platform() == 'Windows':
+    cmd(f'7z a -r {ZIP_NAME}. -xr\'!*__pycache__*\' -xr\'!.*\'')
+else:
+    cmd(f'zip -r {ZIP_NAME} . -x \\*__pycache__\\* -x .\\* -x .\\*/')
 
 if '--build-only' in sys.argv:
     exit(0)
 
+ssh = sshed.servers.Server(username='pi', hostname=IP_ADDRESS, password=SSH_PASSWORD)
+
 # Copy the .zip over to the robot
 print('\nCopying project to robot...\n')
-cmd(f'{sshpass} scp {ZIP_NAME} {IP_ADDRESS}:{PROJECT_PATH}/{ZIP_NAME}')
+# delete existing files
+ssh.run(f'rm -rf {PROJECT_PATH}/{ZIP_NAME}')
+# copy zip file
+ssh.upload(ZIP_NAME, f'{PROJECT_PATH}/{ZIP_NAME}')
+# extract KISS files so the program can appear in the botui list
+ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'bin/*\' -d {PROJECT_PATH}')
+ssh.run(f'unzip {PROJECT_PATH}/{ZIP_NAME} \'botball-game.project.json\' -d {PROJECT_PATH}')
 
 # Run the game on the robot
 print('\nStarting game...\n')
-cmd(f'{sshpass} ssh {IP_ADDRESS} python3 {PROJECT_PATH}/{ZIP_NAME}')
+ssh.run(f'python3 {PROJECT_PATH}/{ZIP_NAME}', echo=True)
