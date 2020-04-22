@@ -34,9 +34,11 @@ You will have to enter your password — when you type it nothing will appear, b
 
 ## Running on your Wombat
 
-Make sure you have Python 3.8 installed on your Wombat (for other, newer versions, edit the `bin/botball_user_program` file). Connect to your Wombat over WiFi and run `python run_on_robot.py`. The contents of the repository will be zipped, sent over SSH to the robot, and executed.
+Connect to your Wombat's WiFi network and run the `run_on_robot.py` script on your computer. The contents of the repository will be zipped, sent over WiFi to the robot, and executed.
 
 To change the configuration (including the IP address and password of the Wombat), edit `run_on_robot.py`.
+
+If you're using VSCode as an editor, you can also run the "Run on Robot" task from the run/debug pane.
 
 ## Contributing
 
