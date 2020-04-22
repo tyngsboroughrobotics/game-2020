@@ -87,6 +87,10 @@ class Wheels(object):
 
         time.sleep(sleep_time)
 
+        # See Motor._force_stop()
+        libwallaby.move_at_velocity(self.left_motor.port, 0)
+        libwallaby.move_at_velocity(self.right_motor.port, 0)
+        time.sleep(0.05)
         libwallaby.off(self.left_motor.port)
         libwallaby.off(self.right_motor.port)
 

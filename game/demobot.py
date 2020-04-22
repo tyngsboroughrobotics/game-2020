@@ -2,14 +2,18 @@ from botball import *
 from .claw import *
 from .arm import *
 
-left_wheel = Motor(port=1)
-right_wheel = Motor(port=0)
+left_wheel = Motor(port=0)
+right_wheel = Motor(port=1)
 wheels = Wheels(left_wheel, right_wheel, left_offset=1.05)
 
 claw = Claw(port=0)
 arm = Arm(port=1)
 
+def step_1():
+    wheels.drive(forward, cm=10)
+    wheels.drive(reverse, cm=10)
 
+'''
 # Test run
 def step_test_run():
     arm.lower_down()
@@ -64,3 +68,4 @@ def step_move_to_bottom_ramp():
 # goes up the ramp.
 def step_drive_up_ramp():
     wheels.drive(reverse, cm=94)
+'''

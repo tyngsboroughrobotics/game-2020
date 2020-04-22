@@ -67,7 +67,7 @@ class MotorConfiguration(object):
     the motor.
     '''
 
-    travel_time_1_cm = 0.05275
+    travel_time_1_cm = 0.04
     '''
     The amount of time (in seconds) it takes to travel 1 cm at full speed. Used
     to calculate how long to block while the motor is traveling.

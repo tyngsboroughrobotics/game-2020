@@ -41,6 +41,20 @@ class Motor(object):
         time.sleep(block_duration)
 
         # Turn off the motor
+        self._force_stop()
+
+    def _force_stop(self):
+        '''
+        When `libwallaby.off` is called, it just stops sending power to the
+        motor. This has the side effect of making the motor spin for a little
+        while longer than intended, throwing off our precise distance
+        measurements. By instead setting the motor's velocity to 0 first, the
+        motor will stop immediately as desired. To conserve power we still turn
+        it off after a short delay.
+        '''
+
+        libwallaby.move_at_velocity(self.port, 0)
+        time.sleep(0.05)
         libwallaby.off(self.port)
 
     @staticmethod
