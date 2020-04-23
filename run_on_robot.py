@@ -61,4 +61,5 @@ clear()
 
 # Run the game on the robot
 print('\nStarting game...\n')
+ssh.run('source /home/pi/.botball')
 ssh.run(f'source {PROJECT_PATH}/bin/botball_user_program; echo "Done"', echo=True)
