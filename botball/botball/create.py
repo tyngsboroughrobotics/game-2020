@@ -1,4 +1,5 @@
 from .libwallaby import *
+from .configuration import CreateConfiguration
 
 
 class Create(object):
@@ -19,7 +20,24 @@ class Create(object):
         it on a background thread. This class is not necessarily thread-safe.
         '''
 
-        pass  # TODO
+        # TODO: In the future we might want to support custom speeds like Motor
+        velocity = CreateConfiguration.max_velocity
+
+        if direction == reverse:
+            velocity *= -1
+
+        # Start driving the Create
+        libwallaby.create_drive_straight(velocity)
+
+        # Figure out how long to sleep as the Create travels
+        block_duration = cm * CreateConfiguration.travel_time_1_cm
+
+        # Block until the Create has finished traveling the specified distance
+        time.sleep(block_duration)
+
+        # Turn off the Create
+        libwallaby.create_stop()
+
 
     def turn(self, direction, degrees):
         '''

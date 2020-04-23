@@ -138,3 +138,19 @@ class CameraConfiguration(object):
     The number of pixels to offset the camera boundaries to make object tracking
     more accurate.
     '''
+
+
+class CreateConfiguration(object):
+    '''
+    Stores the configuration for the iRobot Create.
+    '''
+
+    max_velocity = 500
+    '''
+    The maximum speed the Create can travel when driving straight, in mm/sec.
+    '''
+
+    travel_time_1_cm = 0.02
+    '''
+    The amount of time (in seconds) it takes to travel 1 cm at max velocity.
+    '''
